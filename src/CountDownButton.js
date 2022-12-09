@@ -7,12 +7,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {ViewPropTypes,TextPropTypes} from 'deprecated-react-native-prop-types';
 
 import {
-	View,
 	Text,
 	TouchableOpacity,
-	ViewPropTypes
 } from 'react-native';
 export default class CountDownButton extends React.Component {
 	constructor(props) {
@@ -28,7 +27,7 @@ export default class CountDownButton extends React.Component {
 	}
 	static propTypes = {
 		style: ViewPropTypes.style,
-		textStyle: Text.propTypes.style,
+		textStyle: TextPropTypes.style,
 		onClick: PropTypes.func,
 		disableColor: PropTypes.string,
 		timerTitle: PropTypes.string,
@@ -113,20 +112,18 @@ export default class CountDownButton extends React.Component {
 		const { onClick, style, textStyle, enable, disableColor } = this.props
 		const { counting, timerTitle, selfEnable } = this.state
 		return (
-			<View style={[{ width: 120, height: 44 }, style]}>
-				<TouchableOpacity
-					activeOpacity={counting ? 1 : 0.8}
-					onPress={() => {
-						if (!counting && enable && selfEnable) {
-							this.setState({ selfEnable: false })
-							onClick(this._shouldStartCountting)
-						};
-					}}
-					style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-				>
-					<Text style={[{ fontSize: 16 }, textStyle, { color: ((!counting && enable && selfEnable) ? (textStyle ? textStyle.color : 'blue') : disableColor || 'gray') }]}>{timerTitle}</Text>
-				</TouchableOpacity>
-			</View>
+			<TouchableOpacity
+				activeOpacity={counting ? 1 : 0.8}
+				onPress={() => {
+					if (!counting && enable && selfEnable) {
+						this.setState({ selfEnable: false })
+						onClick(this._shouldStartCountting)
+					};
+				}}
+				style={[{ width: 120, height: 44, justifyContent: 'center', alignItems: 'center' }, style]}
+			>
+				<Text style={[{ fontSize: 16 }, textStyle, { color: ((!counting && enable && selfEnable) ? (textStyle ? textStyle.color : 'blue') : disableColor || 'gray') }]}>{timerTitle}</Text>
+			</TouchableOpacity>
 		)
 	}
 }
