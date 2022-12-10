@@ -116,11 +116,11 @@ export default class CountDownButton extends React.Component {
 				activeOpacity={counting ? 1 : 0.8}
 				onPress={() => {
 					if (!counting && enable && selfEnable) {
-						this.setState({ selfEnable: false })
+						// this.setState({ selfEnable: false })
 						onClick(this._shouldStartCountting)
 					};
 				}}
-				style={[{ width: 120, height: 44, justifyContent: 'center', alignItems: 'center' }, style]}
+				style={[{  justifyContent: 'center', alignItems: 'center' }, style]}
 			>
 				<Text style={[{ fontSize: 16 }, textStyle, { color: ((!counting && enable && selfEnable) ? (textStyle ? textStyle.color : 'blue') : disableColor || 'gray') }]}>{timerTitle}</Text>
 			</TouchableOpacity>
